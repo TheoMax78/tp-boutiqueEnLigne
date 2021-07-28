@@ -32,10 +32,12 @@ function PagePanier(props) {
                     return (                      
                             <>  
                             <tbody>               
-                                <tr key={panier[index].panier[index].nom}>
+                                <tr key={panier[index].panier[index]._id}>
                                     <td >{panier[index].panier[index].nom}</td>
+                                    
                                    
                                     <td>{panier[index].panier[index].description.substring(0,50)} ... </td>
+                                    <td>{panier[index].panier[index].categorie}</td>
                                     <td>{(panier[index].panier[index].prix)} $</td>
                                     <td>{panier[index].panier[index].rabais} %</td>
                                     {panier[index].panier[index].rabais !== 0 ?
