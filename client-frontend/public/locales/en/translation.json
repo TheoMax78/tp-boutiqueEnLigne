@@ -1,0 +1,22 @@
+{
+    "Accueil": "Home",
+    "Produits": "Products",
+    "Bienvenue sur la page d'accueil": "Welcome to the home page",
+    "Nom de l'article": "Product's name",
+    "Description": "Details",
+    "Catégorie": "Category",
+    "Prix unitaire": "Unit price",
+    "Rabais (si applicable)": "Deal",
+    "Nouveau prix unitaire": "New unit price",
+    "Quantité": "Quantity",
+    "Rabais non applicable": "No deal available",
+    "Ajouter au panier": "Add to cart",
+    "Non-disponible": "Not available",
+    "Médicament": "Drug",
+    "Medicament": "Drug",
+    "Cosmétique": "Cosmetic",
+    "Tous": "All",
+    "Filtrer": "filter:",
+    "Produits par page": "Products per page",
+    "Produits Disponible": "Available products"
+}
