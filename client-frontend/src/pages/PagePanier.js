@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Table from 'react-bootstrap/Table';
-import Nav from 'react-bootstrap/Nav';
-import { LinkContainer } from 'react-router-bootstrap';
+
 import { useTranslation } from 'react-i18next';
 import AfficherEnteteProduit from '../composant/AfficherEnteteProduit';
 
@@ -13,7 +12,7 @@ function PagePanier(props) {
 
     useEffect(() => {
         const chercherDonnees = async () => {
-            const resultat = await fetch(`/api/panier/${nomUtilisateur}`);
+            const resultat = await fetch(`/api/panier?nomUtilisateur=${nomUtilisateur}`);
             const body = await resultat.json();
             setPanier(body);
         }
@@ -34,9 +33,8 @@ function PagePanier(props) {
                             <>  
                             <tbody>               
                                 <tr key={panier[index].panier[index].nom}>
-                                    <LinkContainer to={`/produits/produit/${panier[index].panier[index].nom}`} >
-                                        <Nav.Link onClick={() => setPanier(panier[index].panier)}><td >{panier[index].panier[index].nom}</td></Nav.Link>
-                                    </LinkContainer>
+                                    <td >{panier[index].panier[index].nom}</td>
+                                   
                                     <td>{panier[index].panier[index].description.substring(0,50)} ... </td>
                                     <td>{(panier[index].panier[index].prix)} $</td>
                                     <td>{panier[index].panier[index].rabais} %</td>

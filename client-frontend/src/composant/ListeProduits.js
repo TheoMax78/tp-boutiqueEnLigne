@@ -1,7 +1,7 @@
 import React from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
+
 import Button from 'react-bootstrap/Button';
-import Nav from 'react-bootstrap/Nav';
+
 import { useTranslation } from 'react-i18next';
 
 
@@ -11,11 +11,12 @@ function ListeProduits(props) {
     let listeProduits = props.listeProduits;
     let nomUtilisateur = props.nomUtilisateur;
 
-    function AjouterPanier(produits, nomUtilisateur) { 
-        const envoyerDonnees = async (requete, reponse) => {
+    function AjouterPanier(nomUtilisateur, produits) { 
+
+        const envoyerDonnees = async () => {
             await fetch(`/api/produits/ajouterPanier`, {
                 method: 'put',
-                body: JSON.stringify({ produits, nomUtilisateur }),
+                body: JSON.stringify({ nomUtilisateur, produits }),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -31,6 +32,8 @@ function ListeProduits(props) {
         }
     }
 
+    
+
     return (
       <>          
         {                      
@@ -38,9 +41,8 @@ function ListeProduits(props) {
             return (                      
               <>                    
                 <tr key={listeProduits[index]._id}>
-                  <LinkContainer to={`/produits/produit/${listeProduits[index].nom}`} >
-                    <Nav.Link onClick={() => props.setListeProduits(listeProduits)}><td >{listeProduits[index].nom}</td></Nav.Link>
-                  </LinkContainer>
+                  <td >{listeProduits[index].nom}</td>
+                  
                   <td>{listeProduits[index].description.substring(0, 50)} ... </td> 
                   <td>{listeProduits[index].categorie} </td>
                   <td>{(listeProduits[index].prix).toFixed(2)} $</td>
@@ -55,7 +57,7 @@ function ListeProduits(props) {
                   <td>{listeProduits[index].quantite}</td>
                   {
                     listeProduits[index].quantite !== 0 ?<td>
-                    <Button variant="warning" onClick={() => AjouterPanier(listeProduits[index], nomUtilisateur)}>
+                    <Button variant="warning" onClick={() => AjouterPanier(nomUtilisateur, listeProduits[index])}>
                       {t("Ajouter au panier")}
                     </Button>
                     </td>

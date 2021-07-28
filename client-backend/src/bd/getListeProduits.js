@@ -16,8 +16,9 @@ export function getListeProduits(requete, reponse) {
 
             listeProduit = await getListeProduitsDB(db);
 
-            if (categorie !== undefined) {
-               listeProduit.filter(produit => produit.categorie === categorie); 
+            if (categorie !== undefined && categorie !== "Tous") {
+                const listeProduitFiltrer =  listeProduit.filter(produit => produit.categorie === categorie);
+                listeProduit.unshift(listeProduitFiltrer);
             }
             
             const listeProduitTrier = listeProduit.slice(decalage, finPage);

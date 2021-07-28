@@ -12,7 +12,7 @@ import Langages from './composant/Langages';
 
 import BarreNavigation from './composant/BarreNavigation';
 import PageListeProduit from './pages/PageListeProduit';
-import PageProduit from './pages/PageProduit';
+
 import PageAccueil from './pages/PageAccueil';
 import PagePanier from './pages/PagePanier';
 
@@ -36,8 +36,7 @@ function App() {
                 <Container>
                   <Switch>
                     <Route path="/" component={PageAccueil} exact />              
-                    <Route path="/produits" component={PageListeProduit}  exact />
-                    <Route path="/produits/produit/:nom" component={PageProduit} exact />                
+                    <Route path="/produits" component={PageListeProduit}  exact />                                  
                     <Route path="/panier" component={PagePanier} exact />
                   </Switch>
                 </Container>                    

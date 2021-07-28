@@ -15,7 +15,7 @@ function PageListeProduit() {
   const [quantiteParPage, setQuantiteParPage] = useState(24);
   
   const [pageActive, setPageActive] = useState(1);
-  const [categorie, setCategorie] = useState();
+  const [categorie, setCategorie] = useState("Tous");
 
   const nomUtilisateur = "Flanders15@typ.biz"
 
@@ -31,12 +31,12 @@ function PageListeProduit() {
  
   useEffect(() => {
     const chercherDonnees = async () => {
-        const resultat = await fetch(`/api/produits?quantiteParPage=${quantiteParPage}&pageActive=${pageActive}`);
+        const resultat = await fetch(`/api/produits?quantiteParPage=${quantiteParPage}&pageActive=${pageActive}&categorie=${categorie}`);
         const body = await resultat.json();
         setListeProduits(body);
       }        
         chercherDonnees();
-  }, [quantiteParPage, pageActive]); 
+  }, [quantiteParPage, pageActive, categorie]); 
 
   
 
