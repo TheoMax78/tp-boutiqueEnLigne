@@ -15,30 +15,28 @@ function PageListeProduit() {
   const [quantiteParPage, setQuantiteParPage] = useState(24);
   
   const [pageActive, setPageActive] = useState(1);
-  const [categorie, setCategorie] = useState("Tous");
+  const [categorie, setCategorie] = useState(["Tous"]);
 
   const nomUtilisateur = "Flanders15@typ.biz"
 
-  useEffect(() => {
+  /*useEffect(() => {
     const chercherDonnees = async () => {
         const resultat = await fetch(`/api/produits`);
         const body = await resultat.json();
         setListeProduits(body);
       }        
         chercherDonnees();
-  }, []); 
+  }, []); */
 
  
   useEffect(() => {
     const chercherDonnees = async () => {
         const resultat = await fetch(`/api/produits?quantiteParPage=${quantiteParPage}&pageActive=${pageActive}&categorie=${categorie}`);
-        const body = await resultat.json();
+        const body = await resultat.json();        
         setListeProduits(body);
       }        
         chercherDonnees();
   }, [quantiteParPage, pageActive, categorie]); 
-
-  
 
   for (let nombreDePage = 1; nombreDePage <= 5; nombreDePage++) {
     tableauPage.push(
@@ -47,6 +45,8 @@ function PageListeProduit() {
       </Pagination.Item>,
     );
   }
+
+  
 
   return ( 
     <> 
@@ -72,9 +72,9 @@ function PageListeProduit() {
       <h2 align="center">{t("Produits Disponible")}</h2>
       <br/>
 
-      <Pagination>
+      <Pagination active={pageActive}>
         {pageActive <= 1 ? <Pagination.Prev disabled/>: <Pagination.Prev onClick={() => setPageActive(pageActive - 1)} />}
-        <Pagination size="lg">{tableauPage}</Pagination>
+        <Pagination size="lg" onClick={(e) => setPageActive(e.target.text)}>{tableauPage}</Pagination>
         {pageActive >= tableauPage.length ? <Pagination.Next disabled/>: <Pagination.Next onClick={() => setPageActive(pageActive + 1)} />}
       </Pagination>
       <Table striped bordered>
