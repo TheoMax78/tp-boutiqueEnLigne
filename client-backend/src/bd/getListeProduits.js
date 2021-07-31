@@ -6,27 +6,29 @@ export function getListeProduits(requete, reponse) {
     const categorie = String(requete.query.categorie);
     
     let listeProduit = [];
+    let listeProduitTrier = [];
+    let listeProduitFiltrer = [];
 
-    if (quantiteParPage !== undefined && pageActive !== undefined) {
+    
         
         utiliserDB(async (db) => {
 
             listeProduit = await getListeProduitsDB(db);
 
-            if (categorie !== undefined && categorie !== "Tous") {
-                const listeProduitFiltrer = FiltrerCategorie(categorie, listeProduit);
+            if (categorie !== "Tous" ) {
+                listeProduitFiltrer = await FiltrerCategorie(categorie, listeProduit);
+                listeProduitTrier = SeparerListeParPage(pageActive, listeProduitFiltrer, quantiteParPage);
             }
-            const listeProduitTrier = SeparerListeParPage(pageActive, listeProduit, quantiteParPage);
+            else { 
+                listeProduitTrier = SeparerListeParPage(pageActive, listeProduit, quantiteParPage);
+            }
             reponse.status(200).json(listeProduitTrier);
             
         }, reponse).catch(
             () => reponse.status(404).send("Produit non trouvé")
         );
         
-    }
-    else {
-        reponse.status(500).send("Paramètre manquant")
-    }
+    
 }
 
 export function ValiderParametresDefinis(p_parametre) {
@@ -59,14 +61,31 @@ export function CalculerDecalage(p_pageActive, p_quantiteParPage) {
 
     }
     else {
-        return String("Certains paramètres ne sont pas définis");
-    }   
+        return String("Certains paramètres ne sont pas définis")
+    }
+
+
+    
+        
 }
 
 export function FiltrerCategorie(p_categorie, p_listeProduit) {
-    const listeProduitFiltrer = p_listeProduit.filter(produit => produit.categorie === p_categorie);
-    p_listeProduit.unshift(listeProduitFiltrer);
-    return p_listeProduit;
+    if (ValiderParametresDefinis(p_categorie) === true &&
+        ValiderParametresDefinis(p_listeProduit) === true) {
+            if (!isFinite(p_categorie)) {
+                
+                const listeProduitFiltrer = p_listeProduit.filter(produit => produit.categorie === p_categorie);
+                
+                return listeProduitFiltrer;
+            }
+            else {
+                return String("La catégorie doit être de type 'Chaine de caractère' !");
+            }
+            
+        }
+    else {
+        return String("Certains paramètres ne sont pas définis");
+    }
 }
 
 export function SeparerListeParPage(p_pageActive, p_listeProduit, p_quantiteParPage) {
@@ -87,6 +106,8 @@ export function SeparerListeParPage(p_pageActive, p_listeProduit, p_quantiteParP
     else {
         return String("Certains paramètres ne sont pas définis");
     }
+     
+    
 }
 
 export async function getListeProduitsDB(db) {
