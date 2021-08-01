@@ -62,18 +62,14 @@ export function CalculerDecalage(p_pageActive, p_quantiteParPage) {
     }
     else {
         return String("Certains paramètres ne sont pas définis")
-    }
-
-
-    
-        
+    }   
 }
 
 export function FiltrerCategorie(p_categorie, p_listeProduit) {
     if (ValiderParametresDefinis(p_categorie) === true &&
         ValiderParametresDefinis(p_listeProduit) === true) {
             if (!isFinite(p_categorie)) {
-                
+                let listeARetourner = [];
                 const listeProduitFiltrer = p_listeProduit.filter(produit => produit.categorie === p_categorie);
                 
                 return listeProduitFiltrer;
@@ -81,7 +77,6 @@ export function FiltrerCategorie(p_categorie, p_listeProduit) {
             else {
                 return String("La catégorie doit être de type 'Chaine de caractère' !");
             }
-            
         }
     else {
         return String("Certains paramètres ne sont pas définis");

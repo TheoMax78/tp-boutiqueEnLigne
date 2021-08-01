@@ -27,6 +27,7 @@ function BarreNavigation() {
                     <LinkContainer to="/connection" exact>
                         <Nav.Link align="right">{t('Connection')}</Nav.Link>
                     </LinkContainer>
+                    
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

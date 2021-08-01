@@ -30,13 +30,11 @@ function ListeProduits(props) {
         }
     }
 
-    
-
     return (
       <>          
         {                      
           Object.keys(listeProduits).map((index) =>  { 
-            return (
+            return (              
               <tbody key={listeProduits[index]._id}>                  
                 <tr >
                   <td>{listeProduits[index].nom}</td>
@@ -66,12 +64,11 @@ function ListeProduits(props) {
                   }
                 </tr>                      
               </tbody>
-               
-              
             )  
           })
         }        
       </>
     )
   }
+  
   export default ListeProduits;

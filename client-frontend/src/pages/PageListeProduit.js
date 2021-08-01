@@ -73,7 +73,7 @@ function PageListeProduit() {
       <br/>
 
       <Pagination active={pageActive}>
-        {pageActive <= 1 ? <Pagination.Prev disabled/>: <Pagination.Prev onClick={() => setPageActive(pageActive - 1)} />}
+        {pageActive <= 1 ? <Pagination.Prev disabled/>: <Pagination.Prev activeLabel={'Page précédente'} onClick={() => setPageActive(pageActive - 1)} />}
         <Pagination size="lg" onClick={(e) => setPageActive(e.target.text)}>{tableauPage}</Pagination>
         {pageActive >= tableauPage.length ? <Pagination.Next disabled/>: <Pagination.Next onClick={() => setPageActive(pageActive + 1)} />}
       </Pagination>
