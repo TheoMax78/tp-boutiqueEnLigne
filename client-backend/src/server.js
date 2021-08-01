@@ -3,7 +3,6 @@ import { MongoClient, ObjectID } from 'mongodb';
 import { getListeProduits } from './bd/getListeProduits';
 import { getPanierUtilisateur } from './bd/getPanierUtlisateur';
 import { putPanierUtilisateur } from './bd/putPanierUtilisateur';
-import { postPanierUtilisateur } from './bd/postPanierUtilisateur';
 
 const app = express();
 

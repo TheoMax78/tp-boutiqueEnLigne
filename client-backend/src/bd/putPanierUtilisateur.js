@@ -4,15 +4,12 @@ import { postPanierUtilisateurDB } from './postPanierUtilisateur';
 
 
 export function putPanierUtilisateur(requete, reponse) {
-
     const {nomUtilisateur, produits} = requete.body;
 
     if (nomUtilisateur !== undefined && produits !== undefined) {
 
         utiliserDB(async (db) => {
             let paniers = await getPanierUtilisateurDB(db, nomUtilisateur);
-            
-            
             if (paniers.length === 0) { 
                 await putPanierUtilisateurDB(db, nomUtilisateur, produits);
             }

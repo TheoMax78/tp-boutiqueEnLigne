@@ -10,7 +10,6 @@ function ListeProduits(props) {
     let nomUtilisateur = props.nomUtilisateur;
 
     function AjouterPanier(nomUtilisateur, produits) { 
-
         const envoyerDonnees = async () => {
             await fetch(`/api/produits/ajouterPanier`, {
                 method: 'put',
