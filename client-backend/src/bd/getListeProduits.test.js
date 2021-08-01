@@ -95,7 +95,6 @@ describe('get', () => {
         let produitsFiltrer = FiltrerCategorie("DVD", produits);
         const produitsTrier = SeparerListeParPage(1, produitsFiltrer, 24);
 
-        
         expect(produitsTrier.length).toEqual(24);
         expect(produitsTrier[0].nom).toMatch(/Ice/);       
         expect(produitsTrier[23].nom).toMatch(/Tower/);
@@ -107,7 +106,6 @@ describe('get', () => {
         const decalage = CalculerDecalage(2, 24);
         let produitsFiltrer = FiltrerCategorie("DVD", produits);
         const produitsTrier = SeparerListeParPage(2, produitsFiltrer, 24);
-
         
         expect(produitsTrier.length).toEqual(24);
         expect(produitsTrier[0].nom).toMatch(/Conjuring/);       

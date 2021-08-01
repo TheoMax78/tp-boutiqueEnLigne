@@ -8,27 +8,23 @@ export function getListeProduits(requete, reponse) {
     let listeProduit = [];
     let listeProduitTrier = [];
     let listeProduitFiltrer = [];
-
-    
         
-        utiliserDB(async (db) => {
+    utiliserDB(async (db) => {
 
-            listeProduit = await getListeProduitsDB(db);
+        listeProduit = await getListeProduitsDB(db);
 
-            if (categorie !== "Tous" ) {
-                listeProduitFiltrer = await FiltrerCategorie(categorie, listeProduit);
-                listeProduitTrier = SeparerListeParPage(pageActive, listeProduitFiltrer, quantiteParPage);
-            }
-            else { 
-                listeProduitTrier = SeparerListeParPage(pageActive, listeProduit, quantiteParPage);
-            }
-            reponse.status(200).json(listeProduitTrier);
+        if (categorie !== "Tous" ) {
+            listeProduitFiltrer = await FiltrerCategorie(categorie, listeProduit);
+            listeProduitTrier = SeparerListeParPage(pageActive, listeProduitFiltrer, quantiteParPage);
+        }
+        else { 
+            listeProduitTrier = SeparerListeParPage(pageActive, listeProduit, quantiteParPage);
+        }
+        reponse.status(200).json(listeProduitTrier);
             
-        }, reponse).catch(
-            () => reponse.status(404).send("Produit non trouvé")
-        );
-        
-    
+    }, reponse).catch(
+        () => reponse.status(404).send("Produit non trouvé")
+    );
 }
 
 export function ValiderParametresDefinis(p_parametre) {
@@ -53,12 +49,10 @@ export function CalculerDecalage(p_pageActive, p_quantiteParPage) {
                 else {
                     return String("Les paramètres doivent être supérieurs à zéro");
                 }
-                
             } 
             else {
                 return String("Les paramètres doivent être des nombres");
             }
-
     }
     else {
         return String("Certains paramètres ne sont pas définis")
@@ -101,8 +95,6 @@ export function SeparerListeParPage(p_pageActive, p_listeProduit, p_quantiteParP
     else {
         return String("Certains paramètres ne sont pas définis");
     }
-     
-    
 }
 
 export async function getListeProduitsDB(db) {

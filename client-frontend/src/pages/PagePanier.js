@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table';
 import { useTranslation } from 'react-i18next';
 import AfficherEnteteProduit from '../composant/AfficherEnteteProduit';
 
-function PagePanier(props) {
+function PagePanier() {
     const { t } = useTranslation();
     const [panier, setPanier] = useState([]);
     const nomUtilisateur = "Flanders15@typ.biz"
@@ -34,8 +34,6 @@ function PagePanier(props) {
                             <tbody>               
                                 <tr key={panier[index].panier[index]._id}>
                                     <td >{panier[index].panier[index].nom}</td>
-                                    
-                                   
                                     <td>{panier[index].panier[index].description.substring(0,50)} ... </td>
                                     <td>{panier[index].panier[index].categorie}</td>
                                     <td>{(panier[index].panier[index].prix)} $</td>
