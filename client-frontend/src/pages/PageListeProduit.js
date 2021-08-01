@@ -83,9 +83,9 @@ function PageListeProduit() {
             <AfficherEnteteProduit />            
           </tr>
         </thead>
-        <tbody>
+        
           <ListeProduits listeProduits={listeProduits} nomUtilisateur={nomUtilisateur} /> 
-        </tbody>
+        
       </Table>    
     </>
   );

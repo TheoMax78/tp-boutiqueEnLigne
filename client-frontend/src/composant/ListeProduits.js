@@ -4,8 +4,6 @@ import Button from 'react-bootstrap/Button';
 
 import { useTranslation } from 'react-i18next';
 
-
-
 function ListeProduits(props) {
     const { t } = useTranslation();
     let listeProduits = props.listeProduits;
@@ -38,11 +36,10 @@ function ListeProduits(props) {
       <>          
         {                      
           Object.keys(listeProduits).map((index) =>  { 
-            return (                      
-              <>                    
-                <tr key={listeProduits[index]._id}>
-                  <td >{listeProduits[index].nom}</td>
-                  
+            return (
+              <tbody key={listeProduits[index]._id}>                  
+                <tr >
+                  <td>{listeProduits[index].nom}</td>
                   <td>{listeProduits[index].description.substring(0, 50)} ... </td> 
                   <td>{listeProduits[index].categorie} </td>
                   <td>{(listeProduits[index].prix).toFixed(2)} $</td>
@@ -68,7 +65,9 @@ function ListeProduits(props) {
                     </td> 
                   }
                 </tr>                      
-              </>
+              </tbody>
+               
+              
             )  
           })
         }        

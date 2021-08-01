@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
-  Redirect, BrowserRouter as Router, Route, Switch
+  BrowserRouter as Router, Route, Switch
 } from 'react-router-dom';
 import Langages from './composant/Langages';
 
@@ -17,9 +17,6 @@ import PageAccueil from './pages/PageAccueil';
 import PagePanier from './pages/PagePanier';
 
 function App() {
-  //Simulation d'un utilisateur connecté
-  const [utilisateurEstConnecter, setUtilisateur] = useState(true);  
-    
   return (
     <> 
       <Router>
